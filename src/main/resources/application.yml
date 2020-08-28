@@ -1,0 +1,19 @@
+
+
+spring:
+  profiles:
+    active: dev
+  application:
+    name: wpark-attendance
+
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://47.102.150.52:3306/wpark_dev?useSSL=false&characterEncoding=utf-8&serverTimezone=UTC&allowMultiQueries=true
+    username: root
+    password: Password123!
+mybatis:
+  type-aliases-package: com.icbc.wpark.attendance.entity
+server:
+  port: 9001
+
+
