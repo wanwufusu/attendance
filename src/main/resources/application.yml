@@ -16,4 +16,6 @@ mybatis:
 server:
   port: 9001
 
-
+logging:
+  config: classpath:logback-spring.xml
+  path: logs/${spring.application.name}

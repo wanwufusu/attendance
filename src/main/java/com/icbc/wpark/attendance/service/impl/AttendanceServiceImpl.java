@@ -7,15 +7,18 @@ import com.icbc.wpark.attendance.entity.SimpleAttendance;
 import com.icbc.wpark.attendance.service.AttendanceService;
 import com.icbc.wpark.attendance.util.AESUtils;
 import com.icbc.wpark.attendance.util.HttpUtils;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
 
 @Service
+@Slf4j
 public class AttendanceServiceImpl implements AttendanceService {
 
     @Autowired
@@ -23,6 +26,7 @@ public class AttendanceServiceImpl implements AttendanceService {
 
     @Override
     public void syncSimpleAttendance() throws Exception {
+        log.info(new Date() + "    start to sync-----------------");
         String url = "https://wparksdc-kf.dccnet.com.cn:448/wpark_test/vote/attendance/getSimpleAttendance";
         JSONObject jsonObject = new JSONObject();
         String res = HttpUtils.HttpPostWithJson(url, jsonObject.toJSONString());
@@ -38,6 +42,7 @@ public class AttendanceServiceImpl implements AttendanceService {
             attendances.add(simpleAttendance);
         }
         attendanceMapper.insertSimpleBatch(attendances);
+        log.info(new Date() + "    Sync end! There are " + attendances.size() + "records has been insert.");
     }
 
     @Override

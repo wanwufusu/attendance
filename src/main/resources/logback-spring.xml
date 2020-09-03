@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+
+    <property resource="application.yml"/>
+    <springProperty name="logDir" scope="context" source="logging.path"/>
+    <springProperty name="appName" scope="context" source="spring.application.name"/>
+
+    <appender name="stdout" class="ch.qos.logback.core.ConsoleAppender">
+
+        <layout class="ch.qos.logback.classic.PatternLayout">
+            <Pattern>
+                %date [%thread] %-5level %logger{50}:%L - %msg%n
+            </Pattern>
+        </layout>
+    </appender>
+
+
+    <!-- 后台输出 -->
+    <appender name="logfile" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <File>${logDir}/${appName}.log</File>
+        <rollingPolicy class="ch.qos.logback.core.rolling.FixedWindowRollingPolicy">
+            <!--日志文件输出的文件名-->
+            <fileNamePattern>
+                ${logDir}/${appName}.%i.log
+            </fileNamePattern>
+            <minIndex>1</minIndex>
+            <maxIndex>20</maxIndex>
+        </rollingPolicy>
+
+        <triggeringPolicy class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
+            <maxFileSize>50Mb</maxFileSize>
+        </triggeringPolicy>
+        <layout class="ch.qos.logback.classic.PatternLayout">
+            <Pattern>
+                %date [%thread] %-5level %logger{50}:%L - %msg%n
+            </Pattern>
+        </layout>
+    </appender>
+
+    <root level="INFO">
+        <appender-ref ref="logfile"/>
+        <appender-ref ref="stdout"/>
+    </root>
+</configuration>
