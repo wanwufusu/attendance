@@ -40,4 +40,9 @@ public class AESUtils {
         byte[] decodeBytes = ci.doFinal(contentBytes);
         return new String(decodeBytes, StandardCharsets.UTF_8);
     }
+
+    public static void main(String[] args) throws Exception {
+        System.out.println(AESEncode("000886893"));
+        System.out.println(AESEncode("000495236"));
+    }
 }

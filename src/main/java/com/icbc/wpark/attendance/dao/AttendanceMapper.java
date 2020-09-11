@@ -8,16 +8,29 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
+/**
+ * @author ruiming_z
+ */
 @Mapper
 @Repository
 public interface AttendanceMapper {
 
 
+    /**
+     * 添加简易版的通行证
+     * @param simpleAttendance
+     * @return
+     */
     @Insert("replace into wpark_attendance (user_num, office_type, update_time) values" +
             "(#{userNum}, #{officeType}, now())")
     int insertSimple(SimpleAttendance simpleAttendance);
 
 
+    /**
+     * 批量添加简易版通行证
+     * @param simpleAttendances
+     * @return
+     */
     @Insert({
             "<script>","replace into wpark_attendance (user_num, office_type, update_time) values" ,
             "<foreach collection='list' item='item' index='index' separator=','>",

@@ -16,7 +16,7 @@ public class SyncAttendance {
     @Autowired
     AttendanceService attendanceService;
 
-    @Scheduled(cron = "0 0 20 * * ?")
+    @Scheduled(cron = "0 0 22 * * ?")
     public void syncEverydayAttendance() {
         try {
             log.info(new Date() + "start sync");
