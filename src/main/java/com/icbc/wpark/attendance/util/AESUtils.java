@@ -42,7 +42,6 @@ public class AESUtils {
     }
 
     public static void main(String[] args) throws Exception {
-        System.out.println(AESEncode("000886893"));
-        System.out.println(AESEncode("000495236"));
+        System.out.println(AESEncode("000786101"));
     }
 }
