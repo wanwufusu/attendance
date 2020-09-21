@@ -9,6 +9,10 @@ import org.springframework.stereotype.Component;
 
 import java.util.Date;
 
+/**
+ * 定时任务
+ * @author ruiming_z
+ */
 @Component
 @Slf4j
 public class SyncAttendance {
@@ -16,6 +20,9 @@ public class SyncAttendance {
     @Autowired
     AttendanceService attendanceService;
 
+    /**
+     * 每晚22点定时执行同步通行证任务
+     */
     @Scheduled(cron = "0 0 22 * * ?")
     public void syncEverydayAttendance() {
         try {

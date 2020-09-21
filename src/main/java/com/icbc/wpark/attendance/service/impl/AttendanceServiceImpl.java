@@ -29,9 +29,12 @@ public class AttendanceServiceImpl implements AttendanceService {
     @Override
     public void syncSimpleAttendance() throws Exception {
         log.info(new Date() + "    start to sync----------------    ");
+        //测试url
 //        String url = "https://wparksdc-kf.dccnet.com.cn:448/wpark_test/vote/attendance/getSimpleAttendance";
+        //生产url
         String url = "https://wparksdc.dccnet.com.cn:8447/wpark/vote/attendance/getSimpleAttendance";
         List<MessageDto> messageDtos = new ArrayList<>();
+        //通过http调用获取次日全部通行证信息
         JSONObject jsonObject = new JSONObject();
 //        jsonObject.put("passDate", "2020-09-15");
         String res = HttpUtils.HttpPostWithJson(url, jsonObject.toJSONString());
@@ -50,6 +53,7 @@ public class AttendanceServiceImpl implements AttendanceService {
         }
         Map<String, Object> parse = (Map<String, Object>) JSON.parse(res);
         List data = (List) parse.get("data");
+        //把通行证插入至数据库中
         List<SimpleAttendance> attendances = new ArrayList<>();
         if (data != null && data.size() > 0) {
             for (Object dto : data) {

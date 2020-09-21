@@ -11,6 +11,10 @@ import java.nio.charset.StandardCharsets;
 import java.security.SecureRandom;
 import java.security.Security;
 
+/**
+ * aes加解密工具类
+ * @author ruiming_z
+ */
 public class AESUtils {
 
     private static String KEY = "3nwrc70tb9vae0z2";
@@ -42,6 +46,6 @@ public class AESUtils {
     }
 
     public static void main(String[] args) throws Exception {
-        System.out.println(AESEncode("000786101"));
+        System.out.println(AESEncode("555074029"));
     }
 }

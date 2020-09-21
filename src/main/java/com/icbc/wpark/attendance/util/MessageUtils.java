@@ -4,6 +4,10 @@ import com.alibaba.fastjson.JSONObject;
 import com.icbc.wpark.attendance.entity.MessageDto;
 import lombok.extern.slf4j.Slf4j;
 
+/**
+ * 短信工具类
+ * @author ruiming_z
+ */
 @Slf4j
 public class MessageUtils {
 
